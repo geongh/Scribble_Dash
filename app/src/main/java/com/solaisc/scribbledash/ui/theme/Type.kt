@@ -21,7 +21,7 @@ val Typography = Typography(
     headlineLarge = TextStyle(
         fontFamily = bagelFont,
         fontWeight = FontWeight.Normal,
-        fontSize = 36.sp
+        fontSize = 40.sp
     ),
     headlineMedium = TextStyle(
         fontFamily = bagelFont,

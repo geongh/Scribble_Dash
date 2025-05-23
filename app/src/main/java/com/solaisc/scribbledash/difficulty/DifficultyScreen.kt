@@ -1,5 +1,6 @@
 package com.solaisc.scribbledash.difficulty
 
+import android.graphics.Path
 import androidx.compose.foundation.background
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -28,6 +29,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.solaisc.scribbledash.R
 import com.solaisc.scribbledash.difficulty.components.DiffChoice
 import com.solaisc.scribbledash.ui.components.CloseSection
@@ -83,7 +86,7 @@ fun DifficultyScreen(
                     image = painterResource(R.drawable.beginner_off),
                     text = "Beginner",
                     onClick = {
-                        navController.navigate("canvas_screen") {
+                        navController.navigate("canvas_screen?level=Beginner") {
                             popUpTo("canvas_screen") {
                                 inclusive = true
                             }
@@ -97,7 +100,7 @@ fun DifficultyScreen(
                     image = painterResource(R.drawable.challenging_off),
                     text = "Challenging",
                     onClick = {
-                        navController.navigate("canvas_screen") {
+                        navController.navigate("canvas_screen?level=Challenging") {
                             popUpTo("canvas_screen") {
                                 inclusive = true
                             }
@@ -109,7 +112,7 @@ fun DifficultyScreen(
                     image = painterResource(R.drawable.master_off),
                     text = "Master",
                     onClick = {
-                        navController.navigate("canvas_screen") {
+                        navController.navigate("canvas_screen?level=Master") {
                             popUpTo("canvas_screen") {
                                 inclusive = true
                             }

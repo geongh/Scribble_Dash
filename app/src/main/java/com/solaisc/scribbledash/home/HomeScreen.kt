@@ -3,6 +3,7 @@ package com.solaisc.scribbledash.home
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,6 +29,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.solaisc.scribbledash.R
@@ -41,105 +43,67 @@ import com.solaisc.scribbledash.ui.theme.Success
 @Composable
 fun HomeScreen(
     navController: NavController,
+    padding: PaddingValues,
     modifier: Modifier = Modifier
 ) {
-    Scaffold(
-        bottomBar = {
-           NavigationBar(
-               containerColor = Color.White
-           ) {
-               IconButton(
-                   onClick = {
-
-                   },
-                   modifier = Modifier.weight(1f)
-               ) {
-                   Icon(
-                       imageVector = ImageVector.vectorResource(R.drawable.chart),
-                       contentDescription = null
-                   )
-
-               }
-               IconButton(
-                   onClick = {
-                       navController.navigate("start_screen") {
-                           popUpTo("home") {
-                               inclusive = true
-                           }
-                       }
-                   },
-                   modifier = Modifier.weight(1f)
-               ) {
-                   Icon(
-                       imageVector = ImageVector.vectorResource(R.drawable.home),
-                       contentDescription = null,
-                       tint = MaterialTheme.colorScheme.primary
-                   )
-
-               }
-           }
-        },
-        modifier = modifier
-    ) { innerPadding ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    brush = Brush.verticalGradient(
-                        colors = listOf(
-                            BgGradient1,
-                            BgGradient2
-                        )
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        BgGradient1,
+                        BgGradient2
                     )
                 )
-                .padding(innerPadding),
-            contentAlignment = Alignment.TopCenter
+            )
+            .padding(padding),
+        contentAlignment = Alignment.TopCenter
+    ) {
+        Text(
+            text = "Scribble Dash",
+            textAlign = TextAlign.Start,
+            style = MaterialTheme.typography.headlineSmall,
+            color = MaterialTheme.colorScheme.onBackground,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 16.dp, start = 32.dp)
+        )
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top =96.dp)
+                .padding(horizontal = 16.dp)
         ) {
             Text(
-                text = "Scribble Dash",
-                textAlign = TextAlign.Start,
-                style = MaterialTheme.typography.headlineSmall,
+                text = "Start drawing!",
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.headlineLarge,
                 color = MaterialTheme.colorScheme.onBackground,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp, start = 32.dp)
+                modifier = Modifier.fillMaxWidth()
             )
-            Column(
+            Spacer(Modifier.height(8.dp))
+            Text(
+                text = "Select game mode",
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onBackground,
+                modifier = Modifier.fillMaxWidth()
+            )
+            Spacer(Modifier.height(8.dp))
+            MenuItem(
+                borderColor = Success,
+                onClick = {
+                    navController.navigate("difficulty_screen") {
+                        popUpTo("difficulty_screen") {
+                            inclusive = true
+                        }
+                    }
+                },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top =96.dp)
-                    .padding(horizontal = 16.dp)
-            ) {
-                Text(
-                    text = "Start drawing!",
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.headlineLarge,
-                    color = MaterialTheme.colorScheme.onBackground,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Spacer(Modifier.height(8.dp))
-                Text(
-                    text = "Select game mode",
-                    textAlign = TextAlign.Center,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onBackground,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Spacer(Modifier.height(8.dp))
-                MenuItem(
-                    borderColor = Success,
-                    onClick = {
-                        navController.navigate("difficulty_screen") {
-                            popUpTo("difficulty_screen") {
-                                inclusive = true
-                            }
-                        }
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp)
-                )
-            }
+                    .padding(16.dp)
+            )
         }
     }
 }
